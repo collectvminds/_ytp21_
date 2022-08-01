@@ -215,7 +215,7 @@ const Navbar = () => {
                             tabIndex="0" className="menu menu-vertical dropdown-content text-white mt-3 p-2 shadow bg-deepDarkBg rounded-box w-52  ">
 
                             <li className='hover:text-primaryBg'>
-                                <a href='/' className="link link-hover hover:text-white">Home</a></li>
+                                <Link to='/' className="link link-hover hover:text-white">Home</Link></li>
 
                             <li className='hover:text-primaryBg'>
                                 <Link to='/collections' className="link link-hover hover:text-white">Collection</Link></li>
@@ -230,7 +230,7 @@ const Navbar = () => {
                                 <Link to='/#donate' className="link link-hover hover:text-white">Get involved</Link></li>
 
                             <li className='hover:text-primaryBg'>
-                            <a href='/team' className="link link-hover hover:text-white">The team</a></li>      
+                            <Link to='/team' className="link link-hover hover:text-white">The team</Link></li>      
 
                             <li className='hover:text-primaryBg'>
                             <a rel='noreferrer' target={"_blank"} href={whitepaper} className="link link-hover hover:text-white">Whitepaper</a></li>                           

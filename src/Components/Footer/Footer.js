@@ -19,12 +19,12 @@ const Footer = () => {
 
 
                     <div className="grid laptop:grid-flow-col desktop:grid-flow-col mobile:grid-flow-row gap-4 text-white">
-                        <a href='/' className="link link-hover hover:text-primaryBg">Home</a>                        
-                        <a href='/collections' className="link link-hover hover:text-primaryBg">Collection</a>
+                        <Link to='/' className="link link-hover hover:text-primaryBg">Home</Link>                        
+                        <Link to='/collections' className="link link-hover hover:text-primaryBg">Collection</Link>
                         <Link to='/#aboutUs' className="link link-hover hover:text-primaryBg">About</Link>
                         <Link to='/#plan' className="link link-hover hover:text-primaryBg">Roadmap</Link>
                         <Link to='/#donate' className="link link-hover hover:text-primaryBg">Get involved</Link>
-                        <a href='/team' className="link link-hover hover:text-primaryBg">The team</a>
+                        <Link to='/team' className="link link-hover hover:text-primaryBg">The team</Link>
                         <a rel='noreferrer' target={"_blank"} href={whitepaper} className="link link-hover hover:text-white">Whitepaper</a>
 
                     </div>
