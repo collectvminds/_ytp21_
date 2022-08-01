@@ -1,0 +1,14 @@
+.steps {
+    overflow-x: hidden !important;
+}
+
+.steps .card {
+    z-index: 999;
+    transition: all 0.3s ease-in-out;
+    width: 300px !important;
+    min-height: 260px;
+    min-width: 200px;
+    border: 2px solid white;
+}
+
+.bg-hero-about { background-image: url(../../Assets/blob1.svg) }

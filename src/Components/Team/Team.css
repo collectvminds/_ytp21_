@@ -1,0 +1,15 @@
+.teamwrapper {
+    max-width: 100%;
+    position: relative;
+  }
+
+  .teamwrapper .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999999;
+    transition: all 0.5s ease-in-out;
+  }
+.bg-team { background-image: url(../../Assets/blob4.svg) }
+
+

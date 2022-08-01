@@ -1,0 +1,11 @@
+.steps {
+    overflow-x: hidden !important;
+}
+
+.howSteps .card {
+    position: relative;
+    z-index: 999;
+    transition: all 0.3s ease-in-out;
+    min-height: 260px;
+    max-width: 300px;
+}

@@ -1,0 +1,13 @@
+.collectionImages .imgContainer {
+
+    overflow: hidden !important;
+    transition: all 0.8s ease !important;
+}
+
+.artImages {
+    transition: all 0.8s ease !important;
+}
+
+.artImages:hover {
+    transform: scale(1.2);
+}
