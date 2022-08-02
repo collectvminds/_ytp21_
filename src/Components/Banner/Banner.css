@@ -5,6 +5,7 @@
 
 .bannar-wrapper .navbar {
     position: fixed;
+    max-width: 100vw !important;
     top: 0;
     left: 0;
     z-index: 99999999;
