@@ -29,9 +29,9 @@ const Banner = () => {
     return (
         <div className='bannar-wrapper text-white bg-deepDarkBg'>
             <Navbar />
-            <div className="overlay"></div>
+            
 
-                <video className='bannerVideo' src={videos[current]} onEnded={handleVideoEnded}
+            <video className='bannerVideo' src={videos[current]} onEnded={handleVideoEnded}
                         autoPlay muted playsInline></video>
 
             <div className="hero min-h-[100vh] max-h-auto">
@@ -48,9 +48,6 @@ const Banner = () => {
                         <p className="py-20 laptop:text-2xl desktop:text-2xl mobile:text-xl font-light">
                              These historic images of our world are now available as the digital art collection "You, the People!". 
                         </p>
-
-
-
 
                         <button type="button" className="w-70 text-lg font-bold text-center mr-2 mb-2 px-5 py-2.5 border-2 border-white rounded-lg hover:bg-white hover:text-deepDarkBg"
                             onClick={() => navigate('/collections')}

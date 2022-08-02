@@ -6,6 +6,7 @@ import open from '../../Assets/opensea_w.png'
 import dc from '../../Assets/discord.png'
 import eth from '../../Assets/ethereum_w.png'
 import logo from '../../Assets/9.png'
+import ipfs from '../../Assets/ipfs.png'
 import whitepaper from '../../Assets/whitepaper.pdf'
 
 const Footer = () => {
@@ -47,6 +48,10 @@ const Footer = () => {
                             </a>
                             <a href='https://etherscan.io/address/0x6b5ccc5eb0647b85c195d10d33c1fe0603987418' target="_blank" rel="noopener noreferrer">
                                 <img src={eth} className='w-6' alt="etherscan" title='smart contract'/>
+                            </a>
+
+                            <a href='https://ipfs.collectiveminds.ai' target="_blank" rel="noopener noreferrer">
+                                <img src={ipfs} className='w-6' alt="etherscan" title='visit our website in the descetralised web (IPFS)'/>
                             </a>
                             
                         </div>

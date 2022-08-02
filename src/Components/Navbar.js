@@ -172,7 +172,7 @@ const Navbar = () => {
 
     return (
         <div className='navbarWrapper max-w-xs'>
-            <div className={`navbar ${stickyClass} laptop:pl-30 mx-auto mobile:p-1 desktop:px-40 `}>
+            <div className={`navbar ${stickyClass} laptop:px-30 mobile:px-2 desktop:px-40 `}>
                 <div className="navbar-start">
                     <div ref={themeMenu} className="dropdown">
                         <div className="content flex flex-row items-center">
@@ -241,14 +241,6 @@ const Navbar = () => {
                 <div className="navbar-end m-0 desktop:p-0 laptop:pr-8 mobile:pr-10">
 
                     <div className="grid grid-flow-col gap-4 text-white hover:cursor-pointer items-center">
-
-                        {/* This acts like a custom connect button */}
-                        <WagmiConfig client={wagmiClient}>
-                        <RainbowKitProvider chains={chains}>
-                        <YourApp />
-                        </RainbowKitProvider>
-                        </WagmiConfig>
-                        {connectToWallet}
                         <a href='https://twitter.com/collectvminds' target="_blank" rel="noopener noreferrer">
                             <img src={tw} className='visible laptop:w-6 desktop:w-6 mobile:w-3' alt="twitter" title='twitter' />
                         </a>
@@ -262,6 +254,14 @@ const Navbar = () => {
                         <a href='https://discord.gg/x6QFgg4tXB' target="_blank" rel="noopener noreferrer">
                             <img src={dc} className='laptop:w-6 desktop:w-6 mobile:w-3' alt="discord" title='discord' />
                         </a>
+                        {/* This acts like a custom connect button */}
+                        <WagmiConfig client={wagmiClient}>
+                        <RainbowKitProvider chains={chains}>
+                        <YourApp />
+                        </RainbowKitProvider>
+                        </WagmiConfig>
+                        {connectToWallet}
+
                     </div>
                 </div>
             </div>
