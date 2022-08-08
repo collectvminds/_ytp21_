@@ -1,0 +1,49 @@
+.ukrainewrapper {
+
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .descwrapper {
+
+    position: relative;
+    height: auto;
+    width: auto;
+  }
+
+  .ukrainewrapper .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999999;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+.bg-refugees { 
+    background-image: url(../../Assets/refugees.png);
+
+}
+
+.bg-blue {background-color: #0057b7;}
+.bg-yellow {background-color: #ffd700;}
+
+.yellow {background-color: #ffd700;}
+
+.bg-white { background-color: #ffffff; }
+
+
+
+
+
+
+

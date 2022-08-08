@@ -1,8 +1,10 @@
 import React from 'react';
 import './Next.css'
+import { useNavigate } from 'react-router-dom';
 
 
 const Next = () => {
+    const navigate = useNavigate()
     return (
         <div className='nextBg bg-hero bg-cover pb-20 mx-auto' id='plan'>
             <div className="nextContent max-w-[960px] mx-auto">
@@ -15,7 +17,10 @@ const Next = () => {
                     <div className="nextText flex pb-16">
                         <p className='text-white text-left font-light text-xl px-6' data-aos="fade-up">AI is evolving at a very rapid pace, with new architectures and models emerging on a weekly basis. <br /> 
                         <br/> We are continuously evaluating the state-of-the-art of AI and will launch new editions of "You, the People!" that will reflect the changes in technology and people's sentiment around the world. <br /> 
-                        <br/> One goal for this project is to use art as a fun way to explore human bias within AI algorithms. We will publish artwork created by artists in different countries alongside AI created art, both meant to represent the ideas and beliefs of people around the world, and will provide a forum to discuss their similarities and differences.</p>
+                        <br/> Our objective is to understand the evolving perception that AI has of our world and make representations of this perception available to everyone. <br />
+                        <br/> Creating AI art is a fun way to explore human bias within AI algorithms. We will publish artwork created by artists in different countries alongside AI created art, both meant to represent the ideas and beliefs of people around the world, and will provide a forum to discuss their similarities and differences.<br/>
+                        <br/> We are also reaching out to charities in the development world and facilitating our patrons involvement with local artists, volunteering and charity work.
+                        </p>
                     </div>
                 </div>
 
@@ -59,6 +64,13 @@ const Next = () => {
                         </li>
                     </ol>
                 </div>
+
+                <div className="image-container pt-20">
+                            <button type="button" className="w-70 text-lg font-bold bg-Yellow text-center mr-2 mb-2 px-5 py-2.5 rounded-lg hover:bg-Blue hover:text-white"
+                                onClick={() => navigate('/ukraine')}
+                            >Our currenty charity campaign</button> 
+                        </div>
+
             </div>
         </div>
     );

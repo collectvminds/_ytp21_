@@ -12,6 +12,7 @@ import {
 import { infuraProvider } from 'wagmi/providers/infura';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import logo from '../Assets/9.png'
+import logo2 from '../Assets/10.png'
 import ig from '../Assets/instagram.png'
 import wallet from '../Assets/wallet_w.png'
 import dc from '../Assets/discord.png'
@@ -193,13 +194,13 @@ const Navbar = () => {
 
                             <div className="laptop:inline-block desktop:inline-block mobile:hidden  ">
                                 <Link to={'/'} className="laptop:text-xl desktop:text-xl mobile:text-xs hover:bg-transparent">
-                                    <span><img className='laptop:w-9 desktop:w-9 mobile:w-7 mr-2 inline-block' src={logo} alt="logo" srcSet="" /></span> 
+                                    <span><img className='laptop:w-9 desktop:w-9 mobile:w-7 mr-2 inline-block' src={logo} onMouseOver={e => (e.currentTarget.src = logo2)} onMouseOut={e => (e.currentTarget.src = logo)} alt="logo" srcSet="" /></span> 
                                 </Link> collective Minds
                             </div>
 
                             <div className=" laptop:hidden desktop:hidden mobile:inline-block  ">
                                 <Link to={'/'} className="">
-                                    <img className='laptop:w-9 desktop:w-9 mobile:w-7 ml-2 inline-block' src={logo} alt="logo" srcSet="" />
+                                    <img className='laptop:w-9 desktop:w-9 mobile:w-7 ml-2 inline-block' src={logo} onMouseOver={e => (e.currentTarget.src = logo2)} onMouseOut={e => (e.currentTarget.src = logo)} alt="logo" srcSet="" />
                                 </Link>
                             </div>
 
@@ -212,7 +213,7 @@ const Navbar = () => {
                             onFocus={(e) => {
                                 setThemeMenuOpened(true);
                             }}
-                            tabIndex="0" className="menu menu-vertical dropdown-content text-white mt-3 p-2 shadow bg-deepDarkBg rounded-box w-52  ">
+                            tabIndex="0" className="menu menu-vertical dropdown-content text-white mt-3 p-2 shadow bg-deepDarkBg rounded-box w-72  ">
 
                             <li className='hover:text-primaryBg'>
                                 <Link to='/' className="link link-hover hover:text-white">Home</Link></li>
@@ -233,7 +234,10 @@ const Navbar = () => {
                             <Link to='/team' className="link link-hover hover:text-white">The team</Link></li>      
 
                             <li className='hover:text-primaryBg'>
-                            <a rel='noreferrer' target={"_blank"} href={whitepaper} className="link link-hover hover:text-white">Whitepaper</a></li>                           
+                            <a rel='noreferrer' target={"_blank"} href={whitepaper} className="link link-hover hover:text-white">Whitepaper</a></li>     
+
+                            <li className='hover:text-primaryBg'>
+                            <Link to='/Ukraine' className="link text-Yellow link-hover hover:text-Yellow">Ukraine Emergency Appeal</Link></li>                                                      
                         </ul>
                     </div>
                 </div>

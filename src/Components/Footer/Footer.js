@@ -6,7 +6,9 @@ import open from '../../Assets/opensea_w.png'
 import dc from '../../Assets/discord.png'
 import eth from '../../Assets/ethereum_w.png'
 import logo from '../../Assets/9.png'
+import logo2 from '../../Assets/10.png'
 import ipfs from '../../Assets/ipfs.png'
+import github from '../../Assets/github.png'
 import whitepaper from '../../Assets/whitepaper.pdf'
 
 const Footer = () => {
@@ -16,7 +18,7 @@ const Footer = () => {
 
                 <footer className="footer footer-center p-10 bg-transparent " data-aos="fade-up">
 
-                    <img src={logo} className='w-10' alt="logo" />
+                    <img src={logo} onMouseOver={e => (e.currentTarget.src = logo2)} onMouseOut={e => (e.currentTarget.src = logo)} className='w-10' alt="logo" />
 
 
                     <div className="grid laptop:grid-flow-col desktop:grid-flow-col mobile:grid-flow-row gap-4 text-white">
@@ -27,6 +29,7 @@ const Footer = () => {
                         <Link to='/#donate' className="link link-hover hover:text-primaryBg">Get involved</Link>
                         <Link to='/team' className="link link-hover hover:text-primaryBg">The team</Link>
                         <a rel='noreferrer' target={"_blank"} href={whitepaper} className="link link-hover hover:text-white">Whitepaper</a>
+                        <Link to='/Ukraine' className="link link-hover text-Yellow hover:text-primaryBg">Ukraine Emergency Appeal</Link>
 
                     </div>
                     <div>
@@ -50,8 +53,12 @@ const Footer = () => {
                                 <img src={eth} className='w-6' alt="etherscan" title='smart contract'/>
                             </a>
 
+                            <a href='https://github.com/collectvminds' target="_blank" rel="noopener noreferrer">
+                                <img src={github} className='w-6' alt="github" title='github'/>
+                            </a>                            
+
                             <a href='https://ipfs.collectiveminds.ai' target="_blank" rel="noopener noreferrer">
-                                <img src={ipfs} className='w-6' alt="etherscan" title='visit our website in the descetralised web (IPFS)'/>
+                                <img src={ipfs} className='w-6' alt="ipfs" title='visit our website in the descetralised web (IPFS)'/>
                             </a>
                             
                         </div>

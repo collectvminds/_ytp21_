@@ -10,6 +10,7 @@ import HomePage from "./Pages/HomePage"
 
 const Collectionpage = lazy(() => import('./Pages/Collectionpage'))
 const TeamPage = lazy(() => import('./Pages/TeamPage'))
+const UkrainePage = lazy(() => import('./Pages/UkrainePage'))
 
 
 
@@ -57,6 +58,12 @@ function App() {
 				<Route path={'/team'} element={
 					<Suspense>	
 						<TeamPage />
+					</Suspense>
+				} />
+
+				<Route path={'/ukraine'} element={
+					<Suspense>	
+						<UkrainePage />
 					</Suspense>
 				} />
 

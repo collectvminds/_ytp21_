@@ -1,1 +1,7 @@
 .bg-hero { background-image: url(../../Assets/blob2.svg) }
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
