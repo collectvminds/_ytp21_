@@ -30,14 +30,14 @@ const UkraineDesc = () => {
                     </p>
 
 
-                    <div className="image-container py-20">
+                    <div className="image-container py-8">
                             <button type="button" className="w-70 text-lg font-bold bg-Yellow text-center mr-2 mb-2 px-5 py-2.5 rounded-lg hover:bg-Blue hover:text-white"
                                 onClick={() => openInNewTab('https://opensea.io/collection/you-the-people?search[sortAscending]=true&search[sortBy]=UNIT_PRICE&search[toggles][0]=ON_AUCTION')}
                             >View auction</button> 
                     </div>
 
                     <hr /> 
-                    <p className='text-base font-bold text-left my-3 pt-12'> Notes to Editors </p>
+                    <p className='text-base font-bold text-left my-3 pt-8'> Notes to Editors </p>
                     <p className='text-sm font-bold text-left my-3 pt-1'> About UK for UNHCR  </p>
                     UK for UNHCR is the UN Refugee Agency’s national charity partner for the UK, building solidarity, creating partnerships and raising funds to protect refugees worldwide through UNHCR’s work. 
                     UNHCR, the UN Refugee Agency, leads international action to protect people forced to flee their homes because of conflict and persecution. Thanks to voluntary contributions from our UK supporters and partnerships, UNHCR teams can deliver life-saving assistance like shelter, food and water, help safeguard fundamental human rights, and ensure people have a safe place to call home where they can build a better future. UNHCR also works to ensure that stateless people are granted a nationality.
@@ -45,6 +45,7 @@ const UkraineDesc = () => {
                     <p className='text-sm font-bold text-left my-3 pt-5'> About Collective Minds </p>
                     Collective Minds is an art and design studio based in London, which uses artificial intelligence and blockchain technology to create art and to empower artists from the developing world to work together and earn from their art.
                     <br/><br/>Collective Minds is a company registered in England and Wales (company number 12510766).
+                    <br/><br/> Contact:<a href = "mailto:ukraine@collectiveminds.ai">ukraine@collectiveminds.ai</a>
 
             </div>
         </div>

@@ -19,7 +19,7 @@ const UkraineBanner = () => {
             </div>    
 
 
-            <div className="mobile:pt-60 tablet:pt-50 desktop:pt-60 mobile:px-10 mx-auto max-w-[900px]">
+            <div className="mobile:pt-32 tablet:pt-50 desktop:pt-60 mobile:px-10 mx-auto max-w-[900px]">
                 <div className="content" data-aos="fade-left">
                         <div className="image-container">
                                 <img class="desktop:w-36 mobile:w-24" src={unhcr} alt="unhcr"/>

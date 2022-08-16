@@ -34,12 +34,13 @@
 
 }
 
-.bg-blue {background-color: #0057b7;}
-.bg-yellow {background-color: #ffd700;}
+a:link {
+  color: #0057b7
+}
 
-.yellow {background-color: #ffd700;}
-
-.bg-white { background-color: #ffffff; }
+a:hover {
+  color: #ffd700;
+}
 
 
 
