@@ -255,7 +255,7 @@ const Navbar = () => {
                         <a href='https://www.instagram.com/collectvminds' target="_blank" rel="noopener noreferrer">
                             <img src={ig} className='laptop:w-6 desktop:w-6 mobile:w-3' alt="instagram" title='instagram' />
                         </a>
-                        <a href='https://discord.gg/x6QFgg4tXB' target="_blank" rel="noopener noreferrer">
+                        <a href='https://discord.gg/bk5q7h5fVu' target="_blank" rel="noopener noreferrer">
                             <img src={dc} className='laptop:w-6 desktop:w-6 mobile:w-3' alt="discord" title='discord' />
                         </a>
                         {/* This acts like a custom connect button */}

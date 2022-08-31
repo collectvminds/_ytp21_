@@ -46,7 +46,7 @@ const Footer = () => {
                                 <img src={ig} className='w-6' alt="instagram" title='instagram'/>
                             </a>
 
-                            <a href='https://discord.gg/x6QFgg4tXB' target="_blank" rel="noopener noreferrer">
+                            <a href='https://discord.gg/bk5q7h5fVu' target="_blank" rel="noopener noreferrer">
                                 <img src={dc} className='w-6' alt="discord" title='discord'/>
                             </a>
                             <a href='https://etherscan.io/address/0x6b5ccc5eb0647b85c195d10d33c1fe0603987418' target="_blank" rel="noopener noreferrer">
