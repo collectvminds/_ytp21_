@@ -35,18 +35,18 @@ const Banner = () => {
                         autoPlay muted playsInline></video>
 
             <div className="hero min-h-[100vh] max-h-auto">
-                <div className="hero-content py-10 max-w-[800px] desktop:left-96">
+                <div className="hero-content py-10 max-w-[700px] desktop:left-96">
                     <div className='mobile:pt-10 laptop:pt-20' data-aos="fade-up">
                         <h1 className="laptop:text-4xl desktop:text-5xl mobile:text-3xl font-bold">The world,
                             <br />imagined ​by AI.</h1>
 
                         <p className="pt-20 laptop:text-2xl desktop:text-2xl mobile:text-xl font-light">
-                            In December 2021 we asked an artificial intelligence to create art
-                            representing its own thoughts on humanity's sentiment.  
+                            We asked an artificial intelligence to create art
+                            representing its own thoughts on human sentiment.  
                         </p>
 
                         <p className="py-20 laptop:text-2xl desktop:text-2xl mobile:text-xl font-light">
-                             These historic images of our world are now available as the digital art collection "You, the People!". 
+                        These historic images of our world are now available as the digital art collection "You, the People!".
                         </p>
 
                         <button type="button" className="w-70 text-lg font-bold text-center mr-2 mb-2 px-5 py-2.5 border-2 border-white rounded-lg hover:bg-white hover:text-deepDarkBg"
