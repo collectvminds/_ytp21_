@@ -19,7 +19,7 @@ const Overview = ({ overviewData }) => {
 
                     <div className="aboutContent laptop:col-span-12 desktop:col-span-12 mobile:col-span-12 flex flex-col text-center" data-aos="fade-right">
                         <div className="grid grid-rows-1">
-                            <p className='text-Dark text-4xl font-bold pt-10'>Collection highlights</p>
+                            <p className='text-Dark text-4xl font-bold pt-10'>Recently minted</p>
                             <p className='text-Dark text-xl font-normal pt-3'>These are the images created for {overviewData[0]?.name.slice(0,-8)}.</p>
                             <p className='text-Dark text-xl font-normal pt-1'>In total, 250 countries and territories are represented in the collection.</p>
                         </div>
@@ -54,7 +54,7 @@ const Overview = ({ overviewData }) => {
 
                         </div>
                         <br/> <br/>
-                        <button type="button" className="w-70 rounded-lg block laptop:ml-auto desktop:ml-auto mobile:mx-auto text-Dark focus:outline-none text-lg font-bold px-5 py-2.5 border-2 border-Dark text-center mr-2 mb-2 transition-all ease-in-out duration-300 hover:bg-Dark hover:text-white" onClick={() => navigate('/collections')}>Explore collection</button>
+                        <button type="button" className="w-70 rounded-lg block laptop:ml-auto desktop:ml-auto mobile:mx-auto text-Dark focus:outline-none text-lg font-bold px-5 py-2.5 border-2 border-Dark text-center mr-2 mb-2 transition-all ease-in-out duration-300 hover:bg-Dark hover:text-white" onClick={() => navigate('/collections')}>View collection</button>
 
 
                     </div>

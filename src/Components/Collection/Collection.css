@@ -2,7 +2,7 @@
   height: auto !important;
 }
 
-.bg-hero-collection { background-image: url(../../Assets/blob3.svg) }
+.bg-hero-collection { background-image: url(../../Assets/blob3.svg); background-color:#27292D;}
 
 .collection_video_titile {
   height: 50vh !important;

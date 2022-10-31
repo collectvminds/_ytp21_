@@ -10,6 +10,7 @@ import logo2 from '../../Assets/10.png'
 import ipfs from '../../Assets/ipfs.png'
 import github from '../../Assets/github.png'
 import whitepaper from '../../Assets/whitepaper.pdf'
+import etsy from '../../Assets/etsy.png'
 
 const Footer = () => {
     return (
@@ -29,18 +30,25 @@ const Footer = () => {
                         <Link to='/#donate' className="link link-hover hover:text-primaryBg">Get involved</Link>
                         <Link to='/team' className="link link-hover hover:text-primaryBg">The team</Link>
                         <a rel='noreferrer' target={"_blank"} href={whitepaper} className="link link-hover hover:text-white">Whitepaper</a>
-                        <Link to='/Ukraine' className="link link-hover text-Yellow hover:text-primaryBg">Ukraine Emergency Appeal</Link>
+                       {/* <Link to='/Ukraine' className="link link-hover text-Yellow hover:text-primaryBg">Ukraine Emergency Appeal</Link>*/}
 
                     </div>
                     <div>
                         <div className="grid grid-flow-col gap-4 text-white hover:cursor-pointer items-center">
+
                             <a href='https://twitter.com/collectvminds' target="_blank" rel="noopener noreferrer">
                                 <img src={tw} className='w-6' alt="twitter" title='twitter'/>
                             </a>
+                            {/*
+                            <a href='https://www.etsy.com/uk/shop/CollectvMinds?ref=simple-shop-header-name&listing_id=1331772447&section_id=39996841' target="_blank" rel="noopener noreferrer">
+                                <img src={etsy} className='w-5' alt="etsy shop" title='etsy shop'/>
+                            </a>
+
 
                             <a href='https://opensea.io/collection/you-the-people' target="_blank" rel="noopener noreferrer">
                                 <img src={open} className='w-6' alt="opensea" title='opensea'/>
                             </a>
+                            */}
 
                             <a href='https://www.instagram.com/collectvminds/' target="_blank" rel="noopener noreferrer">
                                 <img src={ig} className='w-6' alt="instagram" title='instagram'/>

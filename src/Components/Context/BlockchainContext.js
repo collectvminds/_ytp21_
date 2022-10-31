@@ -3,18 +3,18 @@ import { nftContractAddress } from '../Config/Config';
 import React, { useState } from 'react';
 import { createContext } from 'react';
 import Swal from 'sweetalert2';
-
-
+import {wagmiClient} from '../Navbar';
+const infuraId = process.env.INFURA_ID;
 const contractABI = require("../Abi/abi.json");
-
 const ChainContext = createContext({})
 
 const BlockchainContext = ({ children }) => {
 
     const [wallet, setWallet] = useState([]);
+    const [loading, setLoading] = useState(false)
+    const [sold, setSold] = useState(false)
+
     let contract
-
-
 
     const showAlerts = (alert, message, title = '') => {
         switch (alert) {
@@ -52,103 +52,87 @@ const BlockchainContext = ({ children }) => {
 
     const connectWallet = async () => {
 
-        if (!sessionStorage.getItem("walletConnected")) {
-            sessionStorage.setItem("walletConnected", false)
+        console.log ("wallet status: ", wagmiClient.status);
+
+        if (wagmiClient.status != "connected"){
+                showAlerts('warning', `Please click on the wallet button above to connect your wallet.`, "Wallet not connected!");
+                return false;
         }
-
-            try {
-                const accounts = await window.ethereum.request({
-                    method: "eth_requestAccounts"
-                });
-                setWallet(accounts);
-                sessionStorage.setItem("walletConnected", true)
-                showAlerts('success', "Connection Successful", "Connected")
-
-            } catch (err) {
-                showAlerts('error', "Metamask connection failed, please make sure Metamask is connected and has funds. ", "Walled Connection failed")
-                sessionStorage.setItem("walletConnected", false)
-                return;
+            else{
+                    return true;
             }
 
         }
-    
-
 
     const getConnect = async () => {
-
+            //Line below uses Web3Provider
             const provider = new ethers.providers.Web3Provider(window.ethereum);
+            //Line below uses Infrura
+            //const provider = new ethers.providers.InfuraProvider("homestead", infuraId);
+           
 
-            const signer = provider.getSigner();
+           const signer = provider.getSigner();
 
             contract = new ethers.Contract(
                 nftContractAddress,
                 contractABI,
                 signer
             );
+            console.log("getConnect successfull, contract ready for minting"); 
         }
     
-        //Check if sold - doesn't need wallet
-        const checkIfSold = async (tokenID) => {
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const contract = new ethers.Contract(
-                            nftContractAddress,
-                            contractABI,
-                            provider
-                            );
-            console.log("Token: ", tokenID); 
-            try {
-                    const response = await contract.ownerOf(BigNumber.from(tokenID));
-                    console.log("Owner found, token not for sale: ", response);
-                    if (response) {
-                        return true
-                    }                    
-            } catch (err) {
-                    console.log("Owner not found, token for sale", err);
-                    return false
-            }
-        }
+    //Check if sold - doesn't need wallet
+    const checkIfSold = async (tokenID) => {
+        setLoading(true);
+        const provider = new ethers.providers.InfuraProvider("homestead", infuraId);
+        const contractRead = new ethers.Contract(
+                                 nftContractAddress,
+                                 contractABI,
+                                 provider);
+        const response = await contractRead.isContentOwned(BigNumber.from(tokenID));
+        setSold(response);
+        setLoading(false);
+    }
 
     const handlePurchase = async (tokenID) => {
-        connectWallet()
-        getConnect()
-        console.log("token ID", tokenID);
+        console.log("check wallet status");
+        const walletStatus = await connectWallet();
+        console.log("wallet status is ", walletStatus);
+        if (!walletStatus) 
+            {
+            console.log("returning with false from handlePurchase because wallet is not connected")
+            return false
+            }
+        console.log("get contract instance for minting");
+        getConnect();
+        console.log("will try to mint token ID", tokenID);
+
+        const costContract = (await contract.cost()).toString();
+        const user = await contract.signer.getAddress();
+        const owner = (await contract.owner());
+        const cost = user === owner? 0 : costContract;
+        console.log("1- signer: ", await contract.signer.getAddress());
+        console.log("2- CostContract: ", costContract.toString());
+        console.log("3- Contract: ", nftContractAddress); 
+        console.log("4- Owner: ", owner); 
+        console.log("5- ActualCost: ", cost.toString());   
+    
         try {
-            const isSold = await contract.ownerOf(BigNumber.from(tokenID));
-            if (isSold) {
-                showAlerts('warning', `Token ${tokenID} already has an Owner.`, "Transaction cancelled!")
-            }
-
+            console.log(cost);
+            const response = await contract.mint(BigNumber.from(tokenID), {
+            value: cost
+            });
+            showAlerts('success', `Purchase of token ${tokenID} submitted to the Ethereum network.`, "Transaction in process!")
+            console.log("mint response: ", response);
         } catch (err) {
-            const costContract = (await contract.cost()).toString();
-            const user = await contract.signer.getAddress();
-            const owner = (await contract.owner());
-            const cost = user === owner? 0 : costContract;
-            console.log("1- signer: ", await contract.signer.getAddress());
-            console.log("2- CostContract: ", costContract.toString());
-            console.log("3- Contract: ", nftContractAddress); 
-            console.log("4- Owner: ", owner); 
-            console.log("5- ActualCost: ", cost.toString());   
-        
-            try {
-              console.log(cost);
-              const response = await contract.mint(BigNumber.from(tokenID), {
-                value: cost
-              });
-              showAlerts('success', `Purchase of token ${tokenID} submitted to the Ethereum network.`, "Transaction in process!")
-              console.log("mint response: ", response);
-            } catch (err) {
-              showAlerts('warning', `Purchase of token ${tokenID} failed. Please check if wallet has enough funds.`, "Transaction cancelled!")
-              console.log("mint error:", err);
-            }
-
+            showAlerts('warning', `Purchase of token ${tokenID} failed. Please check if wallet has enough funds.`, "Transaction cancelled!")
+            console.log("mint error:", err);
         }
-
-
     }
 
     const donationHandle = async (amount) => {
 
-        getConnect()
+        getConnect();
 
         try {
             const response = await contract.donate({ value: ethers.utils.parseEther(amount.toString()) });
@@ -161,7 +145,12 @@ const BlockchainContext = ({ children }) => {
     }
 
     const getMintedStatus = async (tokenID) => {
-        const result = await contract.isContentOwned(tokenID);
+        const provider = new ethers.providers.InfuraProvider("homestead", infuraId);
+        const contractRead = new ethers.Contract(
+                                 nftContractAddress,
+                                 contractABI,
+                                 provider);
+        const result = await contractRead.isContentOwned(tokenID);
         return result
              };
 

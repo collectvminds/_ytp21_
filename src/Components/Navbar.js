@@ -10,36 +10,33 @@ import {
   WagmiConfig,
 } from 'wagmi';
 import { infuraProvider } from 'wagmi/providers/infura';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import logo from '../Assets/9.png'
 import logo2 from '../Assets/10.png'
-import ig from '../Assets/instagram.png'
 import wallet from '../Assets/wallet_w.png'
-import dc from '../Assets/discord.png'
-import tw from '../Assets/twitter_w.png'
 import open from '../Assets/opensea_w.png'
+import etsy from '../Assets/etsy.png'
 import whitepaper from '../Assets/whitepaper.pdf'
 import { Link } from 'react-router-dom';
-import { ChainContext } from './Context/BlockchainContext';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { publicProvider } from 'wagmi/providers/public';
 
 const infuraId = process.env.INFURA_ID;
 
-    const { chains, provider } = configureChains(
-    [chain.mainnet],
-    [infuraProvider({ infuraId }),publicProvider(),]
-)
+const { chains, provider } = configureChains(
+    [chain.mainnet], [infuraProvider({ infuraId }),publicProvider(),]
+  );
+
 const { connectors } = getDefaultWallets({
     appName: 'My RainbowKit App',
     chains
   });
   
-  const wagmiClient = createClient({
+export const wagmiClient = createClient({
     autoConnect: true,
     connectors,
     provider
-  })
+  });
 
 export const YourApp = () => {
     return (
@@ -66,7 +63,7 @@ export const YourApp = () => {
               {(() => {
                 if (!mounted || !account || !chain) {
                   return (
-                  
+                    
                     <img src={wallet} className='laptop:w-6 desktop:w-6 mobile:w-3' onClick={openConnectModal} alt="wallet" title='wallet' />
                     
                   );
@@ -133,16 +130,9 @@ const Navbar = () => {
     const themeMenuButton = useRef(null);
     const [stickyClass, setStickyClass] = useState('bg-transparent');
 
-    const { connectWallet } = useContext(ChainContext)
-
-    const connectToWallet = () => {
-        connectWallet()
-    }
-
-
-
     useEffect(() => {
         window.addEventListener('scroll', stickNavbar);
+        console.log ("account status (navbar)", wagmiClient.status);
 
         return () => {
             window.removeEventListener('scroll', stickNavbar);
@@ -236,36 +226,42 @@ const Navbar = () => {
                             <li className='hover:text-primaryBg'>
                             <a rel='noreferrer' target={"_blank"} href={whitepaper} className="link link-hover hover:text-white">Whitepaper</a></li>     
 
+                         {/*}   
                             <li className='hover:text-primaryBg'>
                             <Link to='/Ukraine' className="link text-Yellow link-hover hover:text-Yellow">Ukraine Emergency Appeal</Link></li>                                                      
+                          */}
                         </ul>
                     </div>
                 </div>
 
-                <div className="navbar-end m-0 desktop:p-0 laptop:pr-8 mobile:pr-10">
+                <div className="navbar-end m-0 desktop:p-0 laptop:pr-8 mobile:pr-6">
 
                     <div className="grid grid-flow-col gap-4 text-white hover:cursor-pointer items-center">
+                      <a href='https://www.etsy.com/uk/shop/CollectvMinds?ref=simple-shop-header-name&listing_id=1331772447&section_id=39996841' target="_blank" rel="noopener noreferrer">
+                            <img src={etsy} className='visible laptop:w-5 desktop:w-5 mobile:w-2' alt="etsy shop" title='etsy shop' />
+                        </a>
+                        {/*
                         <a href='https://twitter.com/collectvminds' target="_blank" rel="noopener noreferrer">
                             <img src={tw} className='visible laptop:w-6 desktop:w-6 mobile:w-3' alt="twitter" title='twitter' />
-                        </a>
-                        <a href='https://opensea.io/collection/you-the-people' target="_blank" rel="noopener noreferrer">
-
-                            <img src={open} className='laptop:w-6 desktop:w-6 mobile:w-3' alt="opensea" title='opensea' />
                         </a>
                         <a href='https://www.instagram.com/collectvminds' target="_blank" rel="noopener noreferrer">
                             <img src={ig} className='laptop:w-6 desktop:w-6 mobile:w-3' alt="instagram" title='instagram' />
                         </a>
                         <a href='https://discord.gg/bk5q7h5fVu' target="_blank" rel="noopener noreferrer">
                             <img src={dc} className='laptop:w-6 desktop:w-6 mobile:w-3' alt="discord" title='discord' />
+                        </a>                        
+                        */}
+                        <a href='https://opensea.io/collection/you-the-people' target="_blank" rel="noopener noreferrer">
+                            <img src={open} className='laptop:w-6 desktop:w-6 mobile:w-3' alt="opensea" title='opensea' />
                         </a>
+
                         {/* This acts like a custom connect button */}
                         <WagmiConfig client={wagmiClient}>
                         <RainbowKitProvider chains={chains}>
                         <YourApp />
                         </RainbowKitProvider>
                         </WagmiConfig>
-                        {connectToWallet}
-
+                        
                     </div>
                 </div>
             </div>

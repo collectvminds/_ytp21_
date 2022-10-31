@@ -6,8 +6,12 @@ import { BrowserRouter } from 'react-router-dom'
 import { ArtContext } from './Components/Context/ArtContext'
 import { BlockchainContext } from './Components/Context/BlockchainContext'
 
+
 const container = document.getElementById('root')
 const root = createRoot(container)
+
+
+
 root.render(
 		<BrowserRouter>
 			<ArtContext>

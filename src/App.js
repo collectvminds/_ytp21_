@@ -7,14 +7,12 @@ import Footer from "./Components/Footer/Footer"
 import Four from './Components/FourOFour/Four';
 import HomePage from "./Pages/HomePage"
 
-
 const Collectionpage = lazy(() => import('./Pages/Collectionpage'))
 const TeamPage = lazy(() => import('./Pages/TeamPage'))
 const UkrainePage = lazy(() => import('./Pages/UkrainePage'))
 
-
-
 function App() {
+	
 	const { pathname, hash, key } = useLocation();
 	useEffect(() => {
 		AOS.init(
@@ -79,7 +77,9 @@ function App() {
 		</div>
 
 
-	)
+			) 
+
+			//return(<Crud/>);
 }
 
 export default App

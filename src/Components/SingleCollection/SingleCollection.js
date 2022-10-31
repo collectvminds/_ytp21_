@@ -52,7 +52,7 @@ const SingleCollection = ({ data }) => {
     
                         return (
                             <>
-                                <div className="card card-compact rounded-lg items-center shadow-md cursor-pointer transition-all ease-in-out duration-300 hover:shadow-md text:Dark" onClick={() => navigateArt(img.id)}>
+                                <div className="card card-compact rounded-lg items-center shadow-md transition-all ease-in-out duration-300 hover:shadow-md text:Dark">
                                     <div className="imgContainer mx-auto">
                                         <LazyLoadImage
                                             alt={"artImages"}
@@ -60,19 +60,21 @@ const SingleCollection = ({ data }) => {
                                             src={img.thumbnail}
                                             threshold={500}
                                             loading="lazy"
-                                            className='artImages w-full'
+                                            className='artImages w-full' 
                                         />
                                     </div>
                 
-                                    <div className="card-actions mt-1 gap-7 font-light text-Dark">
-                                        <p className='text-sm text-Dark justify-start '>ID: {img.id}</p>
-                                        <p className='text-sm text-Dark justify-center '>Style: {img.AI_Prompt}</p>
-                                        <p className='text-sm text-Dark justify-wnd '>Price:  {cost} ETH</p>
-
+                                    <div className="card-actions mt-1 gap-5 font-light text-Dark text-sm">
+                                        {/*<p className='text-sm text-Dark justify-start '>ID: {img.id}</p> */}
+                                        {/* after sell out re-instate line above*/}
+                                        <p className='text-sm text-Dark justify-center px-2 py-1 '>Style: {img.AI_Prompt}</p>
+                                        {isAvailable[index] ? 
+                                            <button type="button" className="w-15 rounded-lg text-Dark focus:outline-none text-sm font-bold px-2 py-1 border-0 border-Dark text-center mr-1 mb-1 transition-all ease-in-out duration-300 hover:bg-Dark hover:text-white" onClick={() => navigateArt(img.id)}>
+                                            Minted </button>  : 
+                                            <p className='text-sm text-Dark justify-center px-2 py-1 '>Available</p>}
                                     </div>
-                                    <button type="button" className="w-15 rounded-lg text-Dark focus:outline-none text-sm font-bold px-2 py-1 border-0 border-Dark text-center mr-0 mb-0 transition-all ease-in-out duration-300 hover:bg-Dark hover:text-white">
-                                            {isAvailable[index] ? "Details" : "Buy"}
-                                        </button>  
+                              
+                                    
                                 </div>
                                 
                             </>

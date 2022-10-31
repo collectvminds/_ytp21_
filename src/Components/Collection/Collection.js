@@ -58,8 +58,8 @@ const Collection = ({ collection, loading }) => {
             <div className="collection_video_titile bg-white text-white">
                 <Navbar />
 
-                <div className="collection min-h-[85vh] max-h-auto max-w-[3000px] mx-auto bg-hero-collection bg-cover text-white">
-                    <div className="collection-content mobile:pt-20 tablet:pt-40 desktop:pt-60 mobile:px-10">
+                <div className="collection min-h-[90vh] max-h-auto max-w-[3000px] mx-auto bg-hero-collection bg-cover text-white">
+                    <div className="collection-content mobile:pt-40 tablet:pt-40 desktop:pt-60 mobile:px-10">
                         <div data-aos="fade-up">
                             <h1 className="laptop:text-5xl desktop:text-5xl mobile:text-4xl font-bold">You​, the people!</h1>
 
@@ -70,8 +70,8 @@ const Collection = ({ collection, loading }) => {
                 </div>
             </div>
 
-            <div className="collectionBox bg-Dark h-auto py-10 pt-1 mx-auto ">
-                <div className="boxContainer max-w-[1200px] mx-auto flex laptop:flex-nowrap desktop:flex-nowrap laptop:flex-row desktop:flex-row mobile:flex-col mobile:flex-wrap justify-evenly items-center">
+            <div className="collectionBox bg-CollectionGrey h-auto mx-auto ">
+                <div className="boxContainer max-w-[1200px] mx-auto flex laptop:flex-nowrap desktop:flex-nowrap laptop:flex-row desktop:flex-row mobile:flex-row mobile:flex-wrap justify-evenly items-center">
                     <div className="card card-1 bg-transparent m-10 border-white border-1" data-aos="fade-right">
                         <div className="card-body text-center ">
                             <img src={img1} className="block mx-auto w-14" alt="logo" />

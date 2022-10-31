@@ -64,13 +64,13 @@ const Next = () => {
                         </li>
                     </ol>
                 </div>
-
+                {/*
                 <div className="image-container pt-20">
                             <button type="button" className="w-70 text-lg font-bold bg-Yellow text-center mr-2 mb-2 px-5 py-2.5 rounded-lg hover:bg-Blue hover:text-white"
                                 onClick={() => navigate('/ukraine')}
                             >Our currenty charity campaign</button> 
                         </div>
-
+                */}
             </div>
         </div>
     );

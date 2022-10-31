@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { useState } from 'react';
+//import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import About from '../Components/About/About';
 import Banner from '../Components/Banner/Banner';
@@ -11,22 +11,23 @@ import Next from '../Components/Next/Next';
 import Overview from '../Components/Overview/Overview';
 
 const HomePage = () => {
-    const [userLocation, setUserLocation] = useState({})
-    const [loading, setLoading] = useState(false)
+    //const [userLocation, setUserLocation] = useState({})
+    //const [loading, setLoading] = useState(false)
     let overviewData;
 
     const { findDataByCountry, loading: contextLoading } = useContext(artContext)
 
-    useEffect(() => {
+    {/*useEffect(() => {
         setLoading(true)
         fetch("https://geolocation-db.com/json/d802faa0-10bd-11ec-b2fe-47a0872c6708")
             .then(res => res.json())
-            .then(data => setUserLocation(data))
+            .then(data => setUserLocation(data)) 
+        
         setLoading(false)
     }, [])
 
     if (loading || contextLoading) {
-        return <Loading />
+       return <Loading />
     }
 
     if (Object.keys(userLocation).length === 0) {
@@ -35,7 +36,10 @@ const HomePage = () => {
     } else {
         overviewData = findDataByCountry(userLocation.country_code)
 
-    }
+    } */}
+
+    var countryArray = ["BR", "US", "GB", "DE", "FR", "DK", "CN", "FR", "HK", "TW", "PK", "NO" ];
+    overviewData = findDataByCountry(countryArray[Math.floor(Math.random()*countryArray.length)]);
 
     if (!overviewData.length) {
         return <Loading />

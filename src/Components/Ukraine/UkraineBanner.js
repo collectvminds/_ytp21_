@@ -32,7 +32,7 @@ const UkraineBanner = () => {
                         </div> 
                         <div className="image-container pt-20">
                             <button type="button" className="w-70 text-lg font-bold bg-Yellow text-center mr-2 mb-2 px-5 py-2.5 rounded-lg hover:bg-Blue hover:text-white"
-                                onClick={() => openInNewTab('https://opensea.io/collection/you-the-people?search[sortAscending]=true&search[sortBy]=UNIT_PRICE&search[toggles][0]=ON_AUCTION')}
+                                onClick={() => openInNewTab('https://opensea.io/collection/you-the-people?search[sortAscending]=true&search[sortBy]=UNIT_PRICE&search[stringTraits][0][name]=COUNTRY%20OR%20AREA&search[stringTraits][0][values][0]=Ukraine')}
                             >View auction</button> 
                         </div>
                     </div>
