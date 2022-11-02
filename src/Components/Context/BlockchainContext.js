@@ -53,25 +53,20 @@ const BlockchainContext = ({ children }) => {
     const connectWallet = async () => {
 
         console.log ("wallet status: ", wagmiClient.status);
-
         if (wagmiClient.status != "connected"){
                 showAlerts('warning', `Please click on the wallet button above to connect your wallet.`, "Wallet not connected!");
                 return false;
         }
             else{
+                    console.log ("wallet: ", wagmiClient.data.account);
                     return true;
             }
 
         }
 
     const getConnect = async () => {
-            //Line below uses Web3Provider
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            //Line below uses Infrura
-            //const provider = new ethers.providers.InfuraProvider("homestead", infuraId);
-           
-
-           const signer = provider.getSigner();
+           const provider = new ethers.providers.Web3Provider(window.ethereum);
+           const signer = provider.getSigner(wagmiClient.data.account);
 
             contract = new ethers.Contract(
                 nftContractAddress,
