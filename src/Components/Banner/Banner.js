@@ -16,11 +16,14 @@ import { useContext } from 'react';
 import { ChainContext } from '../Context/BlockchainContext';
 import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore';
 import db from '../../Firebase.init';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 
 const Banner = () => {
-
+    const [data, setData] = useState([]);
+    const navigate = useNavigate();
     const videos = [v1, v2, v3, v4, v5, v6, v7, v8, v9, v10];
     const handleVideoEnded = () => {setCurrent(current < 9 ? current + 1 : 0)};
     const [current, setCurrent] = React.useState(0);
@@ -34,7 +37,6 @@ const Banner = () => {
         );
         const res = getDocs(q).then((qs) => {
             if (!qs.empty) {
-                setLoading(false);
                 console.log("status of tokenId= ", mintedId, " is MINTED");
                 return true
             } else {
@@ -46,88 +48,86 @@ const Banner = () => {
         return res;
     }
 
+    const showLoading = async() => {
+        Swal.fire({
+            position: 'center',
+            title: 'Preparing NFT!',
+            text: 'This may take around 30 seconds...',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            background: "#0b1225",
+            width: 300,
+            didOpen: () => {
+              Swal.showLoading()
+            }
+          });
+      };
+
+      const showSoldOut = async() => {
+        Swal.fire({
+            position: 'center',
+            title: 'Sold out...',
+            text: 'Please check our sale on Opensea!',
+            icon: 'warning',
+            background: "#0b1225",
+            width: 300,
+            footer: '<a href="https://opensea.io/collection/you-the-people?search[sortAscending]=true&search[sortBy]=UNIT_PRICE&search[toggles][0]=BUY_NOW&search[toggles][1]=ON_AUCTION&search[toggles][2]=IS_AVAILABLE_FOR_MOONPAY_FIAT_CHECKOUT" target="_blank" rel="noopener noreferrer">Click here to view Opensea sale</a>'
+          });
+      };
+
+
     const handleBuy = async () => { 
-        setLoading(true);
+        
         let i;
+        setLoading(true);
+        showLoading();
         for (i = 1; i <= 750; i++) {
-            console.log("check status of tokenId= ", i)
+            console.log("check status in MintedDB of tokenId= ", i);
             const res = await findMintedID(i)                                   //finding in firestore
             if (res) {                                                          //found in database
                 continue;
 
             } else {                                                            // did not find in firebase
-                await checkIfSold(i);                                           //checking if sold in blockchain
-                if (sold) {
+                console.log("found potentially not minted tokenId= ", i, "will now check blockchain to confirm");                                                  
+                const isSold = await checkIfSold(i);                                           //checking if sold in blockchain
+                console.log("minted status of taken id", i, " is", isSold);
+                if (isSold) {
                     await addDoc(collection(db, "Minted"), {                    // add to the firebase
                         id: i
                     });
-                    console.log("found in Blockchain, added to DB this tokenID:", i);
+                    console.log("found in Blockchain, added to Minted DB this tokenID:", i);
                     continue;
                 } else {
-                    console.log("Banner: perparing to mint", i);
+                    Swal.close();
+                    console.log("Confirmed available token ID, preparing to mint:", i);
                     const minted = await handlePurchase(i); 
-                    console.log("returned from handlePurchase", minted);
+                    console.log("returned from Mint with status", minted);
 
                     if (minted)                                                 //MINT SUCCESSFULL
                     {
                         const docRef = await addDoc(collection(db, "Minted"), {id: i });
                         console.log("Minted: ", i);
-                        console.log("Inserted to DB: ", docRef);
+                        console.log("Inserted to Minted DB: ", docRef);
                         setLoading(false);
+                        navigate(`/YTP21/assets/nft/${i}`);
                         break;
-
-                        // navigate to art detail page
                     }
                     else {
                         console.log("minted failed for tokenID:", i);
                         const docRef = await addDoc(collection(db, "MintFailed"), {id: i });
-                        console.log("Inserted faield to DB: ", docRef);
+                        console.log("Inserted to MintFailed DB: ", docRef);
                         setLoading(false);
                         break;
                 }
                 }
             }
         }
-    }
-
-
-    {/* old handle buy - delete!
-    const  handleBuy = async () => {
-
-        let i = 1;
-        while (i < 751){
-            const art = data.find((data) => data.id === i);
-            console.log("tokenID", i, "  status in file:",art);
-            if (art == null)  //exist in the database
-                {
-                console.log("try to mint", i);
-                const ret = await checkIfSold(i); //then check if exists in the blockchain
-                if (ret == true)
-                    {
-                    //update database
-                    i++;
-                    }
-                    else if (ret == false) // didn't find token in the database or blockchain
-                        {
-                        if (handlePurchase(i)) //MINT
-                            { 
-                            console.log("minted!", i);    
-                            //minted success update database
-                            i = 751;
-                            }
-                        }
-                        else {i=751;}   // if error minting, stop loop, show error message, user can try again
-   
-                }
-                else 
-                    {
-                    console.log("not minted, it has an owner: ",art);
-                    i++;
-                    }
+        setLoading(false);
+        if (i>=750){
+            console.log("SOLD OUT");
+            showSoldOut();
         }
     }
-
-*/}
 
     
     return (

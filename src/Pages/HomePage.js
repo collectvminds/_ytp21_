@@ -25,17 +25,13 @@ const HomePage = () => {
         
         setLoading(false)
     }, [])
-
     if (loading || contextLoading) {
        return <Loading />
     }
-
     if (Object.keys(userLocation).length === 0) {
         overviewData = findDataByCountry("BR")
-
     } else {
         overviewData = findDataByCountry(userLocation.country_code)
-
     } */}
 
     var countryArray = ["BR", "US", "GB", "DE", "FR", "DK", "CN", "FR", "HK", "TW", "PK", "NO" ];
