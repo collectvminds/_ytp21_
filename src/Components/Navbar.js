@@ -8,6 +8,7 @@ import {
   configureChains,
   createClient,
   WagmiConfig,
+  useSigner
 } from 'wagmi';
 import { infuraProvider } from 'wagmi/providers/infura';
 import React, { useEffect, useRef, useState } from 'react';
@@ -38,7 +39,12 @@ export const wagmiClient = createClient({
     provider
   });
 
+export let signer='';
+
 export const YourApp = () => {
+    const { data: signerData } = useSigner();
+    console.log ("signerData",signerData);
+    signer=signerData;
     return (
       <ConnectButton.Custom>
         {({
@@ -129,6 +135,7 @@ const Navbar = () => {
     const themeMenu = useRef(null);
     const themeMenuButton = useRef(null);
     const [stickyClass, setStickyClass] = useState('bg-transparent');
+    
 
     useEffect(() => {
         window.addEventListener('scroll', stickNavbar);
