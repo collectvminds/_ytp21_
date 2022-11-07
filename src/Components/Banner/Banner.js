@@ -18,6 +18,7 @@ import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, query, setDoc,
 import db from '../../Firebase.init';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useSigner } from 'wagmi';
 
 
 
@@ -29,6 +30,7 @@ const Banner = () => {
     const [current, setCurrent] = React.useState(0);
     const [loading, setLoading] = useState(false);
     const { checkIfSold, handlePurchase, sold, loading: contextLoading, minted: mintedDone } = useContext(ChainContext);
+
 
     const findMintedID = async (mintedId) => {  
         const q = query(
@@ -81,6 +83,7 @@ const Banner = () => {
         let i;
         setLoading(true);
         showLoading();
+
         for (i = 1; i <= 750; i++) {
             console.log("check status in MintedDB of tokenId= ", i);
             const res = await findMintedID(i)                                   //finding in firestore

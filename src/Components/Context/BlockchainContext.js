@@ -3,15 +3,19 @@ import { nftContractAddress } from '../Config/Config';
 import React, { useState } from 'react';
 import { createContext } from 'react';
 import Swal from 'sweetalert2';
-import {wagmiClient} from '../Navbar';
+import {wagmiClient, signer} from '../Navbar';
+import { useSigner } from 'wagmi';
 const infuraId = process.env.INFURA_ID;
 const contractABI = require("../Abi/abi.json");
-const ChainContext = createContext({})
+const ChainContext = createContext({});
+
+
 
 const BlockchainContext = ({ children }) => {
 
     const [wallet, setWallet] = useState([]);
     const [sold, setSold] = useState(false);
+    
 
     let contract;
 
@@ -72,8 +76,10 @@ const BlockchainContext = ({ children }) => {
         }
 
     const getConnect = async () => {
-           const provider = new ethers.providers.Web3Provider(window.ethereum);
-           const signer = provider.getSigner(wagmiClient.data.account);
+           //const provider = new ethers.providers.Web3Provider(window.ethereum);
+           //const signer = provider.getSigner(wagmiClient.data.account);
+           console.log("signer Context", signer);
+                    
             try{
                 contract = new ethers.Contract(
                     nftContractAddress,
@@ -134,9 +140,9 @@ const BlockchainContext = ({ children }) => {
                 console.log("mint response: ", response);
                 return true;
             } catch (err) {
-                //showAlerts('warning', `${err.toString().split('(')[0]}`, "Transaction cancelled!");
-                showAlerts('warning', `${err}`, "Transaction cancelled!");
-                console.log("mint error:", err.toString().split('(')[0]);
+                showAlerts('warning', `${err.toString().split('(')[0]}`, "Transaction cancelled!");
+                //showAlerts('warning', `${err.toString()}`, "Transaction cancelled!");
+                console.log("mint error:", err.toString());
                 return false;
             }
         } else{
