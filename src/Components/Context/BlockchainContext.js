@@ -33,7 +33,7 @@ const BlockchainContext = ({ children }) => {
                     width: 300
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.open('https://discord.gg/bk5q7h5fVu', '_blank', 'noopener,noreferrer');
+                        window.open('https://discord.gg/KDY7rvYcnS', '_blank', 'noopener,noreferrer');
                     } 
                   })
                 break;
