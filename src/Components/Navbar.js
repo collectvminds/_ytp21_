@@ -2,6 +2,8 @@ import '@rainbow-me/rainbowkit/styles.css';
 import {
   getDefaultWallets,
   RainbowKitProvider,
+  connectorsForWallets,
+  wallet
 } from '@rainbow-me/rainbowkit';
 import {
   chain,
@@ -14,7 +16,7 @@ import { infuraProvider } from 'wagmi/providers/infura';
 import React, { useEffect, useRef, useState } from 'react';
 import logo from '../Assets/9.png'
 import logo2 from '../Assets/10.png'
-import wallet from '../Assets/wallet_w.png'
+import wallet_img from '../Assets/wallet_w.png'
 import open from '../Assets/opensea_w.png'
 import etsy from '../Assets/etsy.png'
 import whitepaper from '../Assets/whitepaper.pdf'
@@ -28,10 +30,29 @@ const { chains, provider } = configureChains(
     [chain.mainnet], [infuraProvider({ infuraId }),publicProvider(),]
   );
 
-const { connectors } = getDefaultWallets({
-    appName: 'My RainbowKit App',
-    chains
-  });
+// const { connectors } = getDefaultWallets({
+//     appName: 'My RainbowKit App',
+//     chains
+//   });
+
+const connectors = connectorsForWallets([{
+  groupName: 'Recommended',
+  wallets:[
+    wallet.metaMask({chains})
+  ]
+},
+{
+  groupName: 'Popular',
+  wallets:[
+    wallet.brave({chains}),
+    wallet.coinbase({chains}),
+    wallet.ledger({chains}),
+    wallet.rainbow({chains}),    
+    wallet.trust({chains}),
+    wallet.walletConnect({chains})
+  ]
+}
+])
   
 export const wagmiClient = createClient({
     autoConnect: true,
@@ -70,7 +91,7 @@ export const YourApp = () => {
                 if (!mounted || !account || !chain) {
                   return (
                     
-                    <img src={wallet} className='laptop:w-6 desktop:w-6 mobile:w-3' onClick={openConnectModal} alt="wallet" title='wallet' />
+                    <img src={wallet_img} className='laptop:w-6 desktop:w-6 mobile:w-3' onClick={openConnectModal} alt="wallet" title='wallet' />
                     
                   );
                 }

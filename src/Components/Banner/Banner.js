@@ -14,13 +14,10 @@ import v10 from "../../Assets/videos/v10.mp4";
 import { useState } from 'react';
 import { useContext } from 'react';
 import { ChainContext } from '../Context/BlockchainContext';
-import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import db from '../../Firebase.init';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { useSigner } from 'wagmi';
-
-
 
 const Banner = () => {
     const [data, setData] = useState([]);
@@ -29,8 +26,7 @@ const Banner = () => {
     const handleVideoEnded = () => {setCurrent(current < 9 ? current + 1 : 0)};
     const [current, setCurrent] = React.useState(0);
     const [loading, setLoading] = useState(false);
-    const { checkIfSold, handlePurchase, sold, loading: contextLoading, minted: mintedDone } = useContext(ChainContext);
-
+    const { checkIfSold, handlePurchase, sold, mintError, loading: contextLoading, minted: mintedDone } = useContext(ChainContext);
 
     const findMintedID = async (mintedId) => {  
         const q = query(
@@ -81,7 +77,7 @@ const Banner = () => {
     const handleBuy = async () => { 
         
         let i;
-        setLoading(true);
+       // setLoading(true);
         showLoading();
 
         for (i = 1; i <= 750; i++) {
@@ -117,8 +113,9 @@ const Banner = () => {
                     }
                     else {
                         console.log("minted failed for tokenID:", i);
-                        const docRef = await addDoc(collection(db, "MintFailed"), {id: i });
-                        console.log("Inserted to MintFailed DB: ", docRef);
+                        //moved to context
+                        // const docRef = await addDoc(collection(db, "MintFailed"), {id: i, error: mintError.toString()});
+                        // console.log("Inserted to MintFailed DB: ", " mint error", i, mintError);
                         setLoading(false);
                         break;
                 }
@@ -162,11 +159,13 @@ const Banner = () => {
                                     Minting...
                                 </button>
                                 :
+
                                 <button type="button" className="w-70 text-lg font-bold text-center mr-2 mb-2 px-5 py-1 border-2 border-white rounded-lg hover:bg-white hover:text-deepDarkBg"
-                                    onClick={() => handleBuy()}>
+                                  onClick={() => handleBuy()}>
+
                                     Mint NFT
                                     <p className="py-1 laptop:text-xs desktop:text-xs mobile:text-xs font-light">
-                                        0.08 ETH + gas fee
+                                        0.02 ETH + gas fee
                                     </p>
                                 </button>
                         }
