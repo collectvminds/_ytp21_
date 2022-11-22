@@ -77,7 +77,7 @@ const Banner = () => {
     const handleBuy = async () => { 
         
         let i;
-       // setLoading(true);
+        setLoading(true);
         showLoading();
 
         for (i = 1; i <= 750; i++) {
